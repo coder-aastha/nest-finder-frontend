@@ -1,10 +1,13 @@
 .login {
   height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;  // Ensure the elements are side by side in large screens
 
   .formContainer {
-    flex: 3;
-    height: 100%;
+    flex: 4;  // Increase form container size for large screens
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,35 +15,36 @@
     form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 30px;
+      width: 400px;  // Fixed width for the form
+      max-width: 100%;  // Ensure the form doesn’t overflow the container
 
-      input{
-        padding: 20px;
+      input {
+        padding: 15px 20px;
+        font-size: 16px;
         border: 1px solid gray;
-        border-radius: 5px;
+        border-radius: 8px;
+        width: 100%;
       }
 
-      button{
-        padding: 20px;
-        border-radius: 5px;
+      button {
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 8px;
         border: none;
         background-color: teal;
         color: white;
         font-weight: bold;
         cursor: pointer;
-
-        &:disabled{
-          background-color: #BED9D8;
-          cursor: not-allowed;
-        }
+        width: 100%;
       }
 
-      span{
+      span {
         color: rgba(255, 0, 0, 0.591);
       }
 
-      a{
-        font-size: 14px;
+      a {
+        font-size: 16px;
         color: gray;
         border-bottom: 1px solid gray;
         width: max-content;
@@ -49,13 +53,60 @@
   }
 
   .imgContainer {
-    flex: 2;
+    flex: 3;
     background-color: #fcf5f3;
     display: flex;
     align-items: center;
     justify-content: center;
+
     img {
       width: 100%;
+      max-width: 600px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;  // Stack the form and image vertically on small screens
+    height: auto;  // Allow the height to adjust automatically
+
+    .formContainer {
+      flex: none;
+      width: 80%;  // Reduce the width of the form on small screens
+      margin-bottom: 20px;  // Add space below the form
+    }
+
+    .imgContainer {
+      flex: none;
+      width: 80%;  // Limit the image size to 80% of the screen width
+      margin-top: 20px;  // Add space above the image
+    }
+
+    form {
+      width: 100%;  // Ensure the form takes up the full width on small screens
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .formContainer {
+      width: 90%;  // Increase width to 90% for very small screens
+    }
+
+    form {
+      gap: 20px;  // Decrease the gap between form elements
+    }
+
+    button {
+      padding: 12px;  // Reduce button padding for smaller screens
+      font-size: 14px;  // Adjust font size to be more compact
+    }
+
+    input {
+      padding: 12px 15px;  // Adjust padding to fit better on small screens
+      font-size: 14px;  // Adjust font size for smaller screens
+    }
+
+    a {
+      font-size: 14px;  // Decrease font size for the link on mobile
     }
   }
 }
