@@ -1,33 +1,65 @@
 .register {
   height: 100%;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: fff; // Light background for a clean look
 
   .formContainer {
-    flex: 3;
-    height: 100%;
+    flex: 4;
+    height: 100%;  // Limit the form's height
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
+    border-radius: 10px;  // Add rounded corners for a more polished look
+    // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Soft shadow for a modern feel
+    // padding: 20px;
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 30px;
+      width: 100%;
+      max-width: 450px;  // Control the maximum form width for better readability
+      text-align: center;  // Center the form content
+
+      h1 {
+        font-size: 28px;  // Adjust font size for the heading
+        margin-bottom: 20px;
+        color: #333;  // Darker color for better contrast
+      }
 
       input {
-        padding: 20px;
-        border: 1px solid gray;
-        border-radius: 5px;
+        padding: 15px;
+        font-size: 16px;  // Increase font size for readability
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;  // Make sure padding doesn't affect width
+        transition: border 0.3s ease-in-out;
+
+        &:focus {
+          border-color: teal;  // Highlight input fields on focus
+          outline: none;
+        }
       }
 
       button {
-        padding: 20px;
-        border-radius: 5px;
+        padding: 15px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
         border: none;
         background-color: teal;
         color: white;
-        font-weight: bold;
         cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+
+        &:hover {
+          background-color: #006f5f;  // Darker teal when hovered
+        }
 
         &:disabled {
           background-color: #bed9d8;
@@ -35,27 +67,94 @@
         }
       }
 
-      span {
-        color: rgba(255, 0, 0, 0.591);
-      }
-
       a {
         font-size: 14px;
         color: gray;
+        text-decoration: none;
         border-bottom: 1px solid gray;
         width: max-content;
+        margin-top: 10px;
+
+        &:hover {
+          color: teal;  // Change link color on hover
+          border-color: teal;  // Change border color to teal
+        }
       }
     }
   }
 
   .imgContainer {
-    flex: 2;
-    background-color: #fcf5f3;
+    flex: 3;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fcf5f3;
+    border-radius: 10px;  // Rounded corners for a more modern look
+    overflow: hidden;  // Ensure the image doesn't overflow the container
+
     img {
       width: 100%;
+      height: auto;  // Ensure the image maintains its aspect ratio
+      max-width: 600px;  // Limit the image size for large screens
+    }
+  }
+
+  // Media Queries for Responsiveness
+  @media screen and (max-width: 768px) {
+    flex-direction: column;  // Stack form and image on small screens
+    justify-content: flex-start;  // Align the content to the top of the page
+
+    .formContainer {
+      flex: none;
+      width: 90%;  // Form takes 90% of screen width on smaller screens
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .imgContainer {
+      flex: none;
+      width: 100%;
+      height: 250px;  // Set a fixed height for the image on smaller screens
+      margin-top: 20px;
+    }
+
+    h1 {
+      font-size: 24px;  // Smaller heading size on smaller screens
+    }
+
+    input {
+      padding: 12px;
+      font-size: 14px;  // Adjust font size for smaller screens
+    }
+
+    button {
+      padding: 12px;
+      font-size: 14px;  // Adjust font size for smaller screens
+    }
+
+    a {
+      font-size: 12px;  // Smaller link font size on mobile
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .formContainer {
+      width: 95%;  // Form width increases to 95% on very small screens
+      padding: 15px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    a {
+      font-size: 12px;
     }
   }
 }
