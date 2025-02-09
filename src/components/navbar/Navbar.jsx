@@ -1,39 +1,47 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import nestfinder_logo from "../../../public/nestfinder_logo.png";
+import { useContext, useState } from "react";
 import "./navbar.scss";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { useNotificationStore } from "../../lib/notificationStore";
 
-const Navbar = () => {
+function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const user = true;
+  const { currentUser } = useContext(AuthContext);
+
+  const fetch = useNotificationStore((state) => state.fetch);
+  const number = useNotificationStore((state) => state.number);
+
+  if(currentUser) fetch();
+
   return (
     <nav>
       <div className="left">
-        <Link to="/" className="logo">
-          <img src={nestfinder_logo} alt="" width="80px" height="80px" />
-        </Link>
-        <Link to="/">Home</Link>
-        <Link to="/">About</Link>
-        <Link to="/">Contact</Link>
-        <Link to="/">Agents</Link>
+        <a href="/" className="logo">
+          <img src="/public/nestfinder_logo.png" alt="" width={100} height={100} />
+          {/* <span>NestFinder</span> */}
+        </a>
+        <a href="/">Home</a>
+        <a href="/">About</a>
+        <a href="/">Contact</a>
+        <a href="/">Agents</a>
       </div>
       <div className="right">
-        {user ? (
+        {currentUser ? (
           <div className="user">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzTWQoCUbRNdiyorem5Qp1zYYhpliR9q0Bw&s" alt="" />
-            <span>John Does</span>
+            <img src={currentUser.avatar || "/noavatar.jpg"} alt="" />
+            <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
-              <div className="notification">3</div>
+              {number > 0 && <div className="notification">{number}</div>}
               <span>Profile</span>
             </Link>
           </div>
         ) : (
           <>
-            <Link to="/">Sign In</Link>
-            <Link to="/" className="register">
-              Sign Up
-            </Link>
+            <a href="/login">Sign in</a>
+            <a href="/register" className="register">
+              Sign up
+            </a>
           </>
         )}
         <div className="menuIcon">
@@ -44,16 +52,16 @@ const Navbar = () => {
           />
         </div>
         <div className={open ? "menu active" : "menu"}>
-          <Link to="/">Home</Link>
-          <Link to="/">About</Link>
-          <Link to="/">Contact</Link>
-          <Link to="/">Agents</Link>
-          <Link to="/">Sign In</Link>
-          <Link to="/">Sign Up</Link>
+          <a href="/">Home</a>
+          <a href="/">About</a>
+          <a href="/">Contact</a>
+          <a href="/">Agents</a>
+          <a href="/">Sign in</a>
+          <a href="/">Sign up</a>
         </div>
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
