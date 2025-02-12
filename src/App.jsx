@@ -13,6 +13,9 @@ import ProfilePage from "./routes/profilePage/ProfilePage";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import Register from "./routes/register/RegisterPage";
 import SinglePage from "./routes/singlePage/SinglePage";
+import About from "./components/about/About";
+import ContactPage from "./components/contact/Contact";
+import AgentPage from "./components/agent/Agent";
 
 function App() {
   const router = createBrowserRouter([
@@ -41,6 +44,18 @@ function App() {
         {
           path: "/register",
           element: <Register />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/contact",
+          element: <ContactPage />,
+        },
+        {
+          path: "/agent",
+          element: <AgentPage />,
         },
       ],
     },
