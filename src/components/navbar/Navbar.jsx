@@ -22,9 +22,16 @@ function Navbar() {
           {/* <span>NestFinder</span> */}
         </a>
         <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
-        <a href="/">Agents</a>
+        <Link to="/about">
+          About
+        </Link>
+        <Link to="/contact">
+          Contact
+        </Link>
+        <Link to="/agent">
+          Agent
+        </Link>
+       
       </div>
       <div className="right">
         {currentUser ? (
